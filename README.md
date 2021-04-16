@@ -34,11 +34,11 @@ This is a project that takes notes and stores them into a database and deploys t
   -->
     <br />
     <br />
-    <a href="https://github.com/smilleeymilleey">View Deployed Link</a>
+    <a href=" https://note-taker9000.herokuapp.com/notes">View Deployed Link</a>
     ·
     <a href="https://github.com/smilleeymilleey">Report Bug</a>
     ·
-    <a href="https://github.com/smilleeymilleeys">Request Feature</a>
+    <a href="https://github.com/smilleeymilleey">Request Feature</a>
   </p>
 </p>
 
