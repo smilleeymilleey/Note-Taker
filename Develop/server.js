@@ -1,7 +1,8 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const { rsort } = require("semver");
+const { v4: uuidv4 } = require('uuid');
+
 
 const app = express();
 const port = process.env.PORT || "8000";
@@ -24,12 +25,24 @@ app.get('/api/notes', (req, res) => {
 
 app.post('/api/notes', (req, res) => {
     let notes = JSON.parse(fs.readFileSync('./db/db.json'));
-    notes.push(req.body)
+    let newNote = req.body;
+    newNote.id = uuidv4(); 
+    notes.push(newNote)
     fs.writeFileSync('./db/db.json', JSON.stringify(notes));
   
     res.json(notes);
 
+})
 
+app.delete('/api/notes/:id', (req, res) => {
+    let notes = JSON.parse(fs.readFileSync('./db/db.json'));
+
+    let id = req.params.id
+    let deleteNote = notes.filter(function (obj) {
+        return obj.id !== id;
+    })
+    fs.writeFileSync('./db/db.json', JSON.stringify(deleteNote));
+    res.json(notes);
 })
 
 
