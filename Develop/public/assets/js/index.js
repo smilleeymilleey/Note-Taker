@@ -1,3 +1,12 @@
+const express = require("express");
+const path = require("path");
+
+const app = express();
+const port = process.env.PORT || "8000";
+
+app.use(express.urlencoded({ extended: true}));
+app.use(express.json());
+
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -178,3 +187,13 @@ if (window.location.pathname === '/notes') {
 }
 
 getAndRenderNotes();
+
+app.get("/", (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+
+app.get("/notes" (req, res) => res.sendFile(path.join(__dirname, 'notes.html')));
+
+
+
+app.listen(port, () => {
+    console.log(`Listening to requests on http://localhost:${port}`);
+  });
